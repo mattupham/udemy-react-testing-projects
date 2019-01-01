@@ -103,6 +103,22 @@ test("clicking decrement button when counter is 0 will not decrement counter", (
   expect(counterDisplay.text()).toContain(counter);
 
   error = findByTestAttr(wrapper, "decrement-error");
-
   expect(error.length).toBe(1);
+});
+
+test("clicking increment will remove decrement errors", () => {
+  const counter = 0;
+  const showError = true;
+  const wrapper = setup(null, { counter, showError });
+
+  // find error
+  let error = findByTestAttr(wrapper, "decrement-error");
+  expect(error.length).toBe(1);
+
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+  incrementButton.simulate("click");
+  wrapper.update();
+
+  error = findByTestAttr(wrapper, "decrement-error");
+  expect(error.length).toBe(0);
 });
