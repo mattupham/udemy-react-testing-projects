@@ -62,5 +62,5 @@ test("clicking button increments counter display", () => {
 
   // find display and test value
   const counterDisplay = findByTestAttr(wrapper, "counter-display");
-  expect(counterDisplay.text());
+  expect(counterDisplay.text()).toContain(counter + 1);
 });
